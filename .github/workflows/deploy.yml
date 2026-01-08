@@ -2,7 +2,7 @@ name: Deploy Flutter Web
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ceramica_calc
     steps:
       - uses: actions/checkout@v4
 
@@ -32,12 +29,12 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ceramica_calc/build/web
+          path: build/web
 
   deploy:
-    environment:
-      name: github-pages
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: github-pages
     steps:
       - uses: actions/deploy-pages@v4
